@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM keymetrics/pm2:latest
 # Create app directory
 WORKDIR /usr/src/app
 
@@ -16,4 +16,6 @@ COPY . .
 
 EXPOSE 8080
 
-CMD [ "npm", "start" ]
+## DEVELOPMENT MODE
+ENV NODE_ENV=development
+CMD ["pm2-dev", "ts-node-dev,src/server.js", "--env", "development"]

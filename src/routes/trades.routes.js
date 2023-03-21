@@ -1,0 +1,13 @@
+"use strict";
+exports.__esModule = true;
+exports.findSideTrade = exports.tradeRoutes = void 0;
+var express_1 = require("express");
+var CreateTradeController_1 = require("../modules/tradesOperations/useCases/tradesControllers/CreateTradeController");
+var FindSideTradeController_1 = require("../modules/tradesOperations/useCases/tradesControllers/FindSideTradeController");
+var tradeRoutes = (0, express_1.Router)();
+exports.tradeRoutes = tradeRoutes;
+var createtrade = new CreateTradeController_1.CreateTradesController();
+var findSideTrade = new FindSideTradeController_1.FindSideTradesController();
+exports.findSideTrade = findSideTrade;
+tradeRoutes.post("/", createtrade.handle);
+tradeRoutes.get("/side", findSideTrade.handle);

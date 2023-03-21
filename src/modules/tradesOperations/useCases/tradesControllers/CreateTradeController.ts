@@ -5,11 +5,10 @@ import { CreateTradesUseCase } from "../CreateTradeUseCase";
 
 export class CreateTradesController {
   async handle(request: Request, response: Response) {
-    const { id, moment, orderId, priceUSD, quantity, side, symbol, timestamp } = request.body;
+    const { moment, orderId, priceUSD, quantity, side, symbol, timestamp } = request.body;
 
     const createTradesUseCase = container.resolve(CreateTradesUseCase);
     const trade = await createTradesUseCase.execute({
-      id,
       moment,
       orderId,
       priceUSD,

@@ -5,6 +5,7 @@ import "./shared/container"
 import express, { Router, NextFunction, Request, Response } from "express"
 import { AppError } from "./errors/AppError";
 import { routes } from  "./routes"
+import  pullBack  from "./scripts/kucoinStrategy"
 
 const PORT = 4003;
 const HOST = '0.0.0.0';
@@ -30,6 +31,6 @@ app.use(
     }
   );
 
-
+pullBack.pullBack()
 
 app.listen(PORT, HOST,  () => console.log("Server is running on PORT 4003"));

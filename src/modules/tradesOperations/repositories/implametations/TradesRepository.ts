@@ -5,12 +5,9 @@ import { ICreateTradesRegistersDTO } from "../../dtos/ICreateTradesRegistersDTO"
 import { ITradesRepository } from "../ITradesRepository";
 
 class TradesRepository implements ITradesRepository{
-
-
-    async create({ id, moment, orderId, priceUSD, quantity, side, symbol, timestamp }: ICreateTradesRegistersDTO): Promise<Trades> {
+    async create({ moment, orderId, priceUSD, quantity, side, symbol, timestamp }: ICreateTradesRegistersDTO): Promise<Trades> {
         const trade = await prismaClient.trades.create({
             data: {
-                id,
                 moment,
                 orderId,
                 priceUSD,
@@ -20,7 +17,7 @@ class TradesRepository implements ITradesRepository{
                 timestamp
             }
         })
-        return trade;
+        return trade as Trades;
     }
 
     async findByDate(moment: string): Promise<Trades> {
@@ -37,9 +34,10 @@ class TradesRepository implements ITradesRepository{
         const tradeSide = await prismaClient.trades.findMany({
             where: {
                 side,
-            },
+            }  
         });
-    
+
+        
         return tradeSide as unknown as Trades;
     }
 

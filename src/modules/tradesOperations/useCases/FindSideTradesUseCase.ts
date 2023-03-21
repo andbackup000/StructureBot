@@ -6,29 +6,20 @@ import { ITradesRepository } from "../repositories/ITradesRepository";
 
 
 @injectable()
-class CreateTradesUseCase{
+class FindSideTradesUseCase{
     constructor(
         @inject("TradesRepository") 
         private tradesRepository: ITradesRepository
     ){}
 
-    async execute({ moment, orderId, priceUSD, quantity, side, symbol, timestamp }: ICreateTradesRegistersDTO){
-
-        const trade = await this.tradesRepository.create({
-            moment,
-            orderId,
-            priceUSD,
-            quantity,
+    async execute(side : string){
+        const findtrade = await this.tradesRepository.findBySide(
             side,
-            symbol,
-            timestamp
-        });
+        );
 
-        return trade;
+        return findtrade;
 
     }
-
-
 }
 
-export { CreateTradesUseCase }
+export { FindSideTradesUseCase }

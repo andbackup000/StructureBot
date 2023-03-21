@@ -1,5 +1,4 @@
 interface ICreateTradesRegistersDTO {
-    id: string;
     orderId: string;
     symbol: string;
     side: string;
