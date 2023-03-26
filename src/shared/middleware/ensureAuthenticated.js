@@ -1,25 +1,25 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.ensureAuthenticated = void 0;
-var jsonwebtoken_1 = require("jsonwebtoken");
-var AppError_1 = require("../../errors/AppError");
-var UserRepository_1 = require("../../modules/users/repositories/implametations/UserRepository");
+const jsonwebtoken_1 = require("jsonwebtoken");
+const AppError_1 = require("../../errors/AppError");
+const UserRepository_1 = require("../../modules/users/repositories/implametations/UserRepository");
 function ensureAuthenticated(request, resposnse, next) {
-    var authToken = request.headers.authorization;
+    const authToken = request.headers.authorization;
     if (!authToken) {
         return resposnse.status(401).json({
-            errorCode: "token invalid"
+            errorCode: "token invalid",
         });
     }
-    var _a = authToken.split(" "), token = _a[1];
-    var user_id = (0, jsonwebtoken_1.verify)(token, process.env.JWT_SECRET).sub;
-    var userRepository = new UserRepository_1.UserRepository();
-    var user = userRepository.findById(user_id);
+    const [, token] = authToken.split(" ");
+    const { sub: user_id } = (0, jsonwebtoken_1.verify)(token, process.env.JWT_SECRET);
+    const userRepository = new UserRepository_1.UserRepository();
+    const user = userRepository.findById(user_id);
     if (!user) {
         throw new AppError_1.AppError("Token invalid!", 401);
     }
     request.user = {
-        id: user_id
+        id: user_id,
     };
     next();
 }
