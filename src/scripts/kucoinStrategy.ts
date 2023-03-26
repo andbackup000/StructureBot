@@ -17,7 +17,7 @@ async function pullBack() {
     });
 
     let comprado = false;
-    const url = 'https://4003-andbackup00-structurebo-p1q9jeuihe2.ws-us90.gitpod.io/trades'
+    const url = 'https://4003-andbackup00-structurebo-390ppnlq7ev.ws-us92.gitpod.io/trades'
     const findTrade = await axios.get(`${url}/side`)
 
 

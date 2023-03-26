@@ -6,6 +6,8 @@
 
 tasks:
   - init: yarn install 
-    command: docker-compose up -d && yarn run start
+    command: docker-compose up -d && 
+      yarn prima migrate dev && 
+      yarn prisma db seed
 
 
