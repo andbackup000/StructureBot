@@ -9,11 +9,10 @@
     "seed": "ts-node-dev prisma/seed.ts"
   },
   "scripts": {
-    "build":"tsc",
-    "dev": "nodemon src/scripts/kucoinStrategy.ts",
-    "start": "ts-node-dev --exit-child --transpile-only --ignore-watch node_modules src/server.js",
-    "forever": "forever start -v -c -r tsconfig-paths/register src/server.ts ",
-    "pm2": "pm2 start ts-node-dev src/server.js"
+    "build":"tsup src",
+    "dev":"ts-node-dev --exit-child --transpile-only --ignore-watch node_modules src/server.ts",
+    "test": "nodemon src/scripts/kucoinStrategy.ts",
+    "start": "forever -r dotenv dist/server.js",
   },
   "dependencies": {
     "@prisma/client": "^4.11.0",
