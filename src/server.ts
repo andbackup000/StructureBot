@@ -31,6 +31,6 @@ app.use(
     }
   );
 
-pullBack.pullBack()
+//pullBack.pullBack()
 
 app.listen(PORT, HOST,  () => console.log("Server is running on PORT 4003"));
